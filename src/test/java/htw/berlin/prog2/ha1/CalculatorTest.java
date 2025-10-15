@@ -96,7 +96,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("*");
+        calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(4);
         calc.pressEqualsKey();
 
@@ -106,6 +106,21 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    public void testClearKeyShouldNotResetStoredValue() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressClearKey(); // nur 1x drücken
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        assertEquals("7", calc.readScreen()); // erwartet: 5 + 2 = 7
+    }
+
+
+
 
 }
 
