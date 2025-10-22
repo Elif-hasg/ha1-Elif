@@ -119,6 +119,15 @@ class CalculatorTest {
         assertEquals("7", calc.readScreen()); // erwartet: 5 + 2 = 7
     }
 
+    @Test
+    public void testEqualsWithoutOperationShouldDoNothing() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        assertEquals("5", calc.readScreen()); // erwartet: keine Änderung
+    }
+
+
 
 
 
