@@ -114,10 +114,13 @@ public class Calculator {
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
-
     public void pressNegativeKey() {
+        if (screen.equals("0") || screen.equals("Error")) {
+            return; // kein Vorzeichenwechsel bei 0 oder Error
+        }
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
     }
+
 
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
