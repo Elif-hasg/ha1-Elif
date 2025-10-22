@@ -107,10 +107,17 @@ public class Calculator {
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
+
+    /**
+     * Jetzt -0 nicht mehr möglich (hilfe von cousin)
+     */
     public void pressNegativeKey() {
         if (screen.equals("0") || screen.equals("Error")) {
-            return; // kein Vorzeichenwechsel bei 0 oder Error
+            return;
         }
+        /**
+         * Ursprungscode:
+         */
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
     }
 
@@ -125,18 +132,23 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
 
+    /**
+     * wenn kein operator, dann passiert nichts bzw KEIN Illegal Argument
+     */
 
     public void pressEqualsKey() {
         if (latestOperation.equals("")) {
-            return; // keine Operation -> keine Änderung
+            return;
         }
 
+        /**
+         * Urspungscode:
+         */
         var result = switch (latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> Double.parseDouble(screen) == 0 ? Double.POSITIVE_INFINITY
-                    : latestValue / Double.parseDouble(screen);
+            case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
 

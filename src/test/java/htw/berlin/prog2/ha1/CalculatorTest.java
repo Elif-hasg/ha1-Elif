@@ -107,22 +107,28 @@ class CalculatorTest {
 
     }
 
-
+    /**
+     * wenn = gedrückt wird, ohne operator, dann nur Wiedergebung der Digit!
+     */
 
     @Test
     public void testEqualsWithoutOperationShouldDoNothing() {
         Calculator calc = new Calculator();
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
-        assertEquals("5", calc.readScreen()); // erwartet: keine Änderung
+        assertEquals("5", calc.readScreen());
     }
+
+    /**
+     * kein -0 soll möglich sein
+     */
 
     @Test
     @DisplayName("should not display negative zero when pressing +/- on zero")
     void testNoNegativeZero() {
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey(); // Toggle on 0
+        calc.pressNegativeKey();
 
         String expected = "0";
         String actual = calc.readScreen();
