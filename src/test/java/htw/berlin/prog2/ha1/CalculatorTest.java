@@ -127,6 +127,19 @@ class CalculatorTest {
         assertEquals("5", calc.readScreen()); // erwartet: keine Änderung
     }
 
+    @Test
+    @DisplayName("should not display negative zero when pressing +/- on zero")
+    void testNoNegativeZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey(); // Toggle on 0
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 
